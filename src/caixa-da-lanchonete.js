@@ -1,7 +1,7 @@
 class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
-        return "";
+        return teste;
     }
 
 }
