@@ -1,3 +1,6 @@
-const debitoStrategy = () =>{
-    return valorTotal;
+const debitoStrategy = () => {
+    const calcularDesconto = () => {
+        const precoDesconto = valorTotal;
+        return calcularDesconto;
+    }
 }

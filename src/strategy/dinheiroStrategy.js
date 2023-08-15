@@ -1,3 +1,6 @@
-const dinheiroStrategy = () =>{
-    return valorTotal * 0.5;
+const dinheiroStrategy = () => {
+    const calcularDesconto = () => {
+        const precoDesconto = valorTotal * 0.5;
+        return calcularDesconto
+    }
 }
