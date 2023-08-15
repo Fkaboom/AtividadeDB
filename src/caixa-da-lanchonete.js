@@ -1,9 +1,9 @@
 class CaixaDaLanchonete {
 
     calcularValorDaCompra(metodoDePagamento, itens) {
-        return teste;
+        return Preco.cafe;
     }
 
 }
-
+CaixaDaLanchonete.calcularValorDaCompra;
 export { CaixaDaLanchonete };

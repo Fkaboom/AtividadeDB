@@ -1,0 +1,3 @@
+const debitoStrategy = () =>{
+    return valorTotal;
+}
