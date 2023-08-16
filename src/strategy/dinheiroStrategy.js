@@ -1,6 +1,11 @@
-const dinheiroStrategy = () => {
+function DinheiroStrategy  (valorTotal) {
+    
     const calcularDesconto = () => {
         const precoDesconto = valorTotal * 0.5;
-        return calcularDesconto
+        return precoDesconto;
     }
-}
+    return {
+        calcularDesconto
+    };
+};
+export { DinheiroStrategy };

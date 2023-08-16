@@ -1,6 +1,13 @@
-const creditoStrategy = () => {
+const CreditoStrategy = (valorTotal) => {
+    
+    
     const calcularDesconto = () => {
         const precoDesconto = valorTotal * 1.3;
-        return calcularDesconto;
+        return precoDesconto;
     }
-}
+    return {
+        calcularDesconto,
+        
+    };
+};
+export { CreditoStrategy };

@@ -1,28 +1,36 @@
+import { PrecoItens } from './preco.js';
+import { PagamentoContext } from './strategy/pagamentoContext.js';
+import {StrategyMapper} from './strategy/strategyMapper.js'
+
 class CaixaDaLanchonete {
+  calcularValorDaCompra(metodoDePagamento, itens) {
+    if (itens.length === 0) {
+      console.log("Não há itens no carrinho de compra!");
+      return 0;
+    }
 
-
-    calcularValorDaCompra(metodoDePagamento, itens) {
-
-        const valorTotal = itens
-        if(itens !== null){
-        for (const itemInfo of this.itens) {
-            const [item, quantidade] = itemInfo.split(',');
-            if (Preco.hasOwnProperty(item)) {
-                total += Preco[item] * parseInt(quantidade);
-            } else {
-                console.log(`Item '${item}' não encontrado na lista de preços.`);
-            }
+    const precos = new PrecoItens(); 
+    const valorTotal = itens
+      .map(itemInfo => {
+        const [item, quantidade] = itemInfo.split(',');
+        const precoItem = precos.getPreco(item);
+        if (precoItem !== undefined) {
+          return precoItem * parseInt(quantidade);
+        } else {
+          console.log(`Item '${item}' não encontrado na lista de preços.`);
+          return 0;
         }
-    }else{
-        console.log("Não há itens no carrinho de compra!")
-    }
-        const context = pagamentoContext();
-        const strategy = strategyMapper[metodoDePagamento()];
-        context.setStrategy(strategy)
-        const precoDesconto = context.execute();
-        return precoDesconto;
-    }
+      })
+      .reduce((acumulador, valorAtual) => acumulador + valorAtual, 0);
 
+      const context = new PagamentoContext(); 
+      const strategy = StrategyMapper[metodoDePagamento];
+      context.setStrategy(strategy)
+      const precoDesconto = context.execute(valorTotal);
+      return precoDesconto;
+  }
 }
+const caixa = new CaixaDaLanchonete();
+const precoDesconto = caixa.calcularValorDaCompra('credito', ['cafe,1', 'chantily,1']);
 
-export { CaixaDaLanchonete };
+console.log(`Preço com desconto: R$ ${precoDesconto}`);
